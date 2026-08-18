@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maps | Abdullah Riaz</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <!-- Existing global portfolio stylesheet: do not replace it -->
+  <link rel="stylesheet" href="../CSS/style.css">
+  <!-- Maps-page styles only -->
+  <link rel="stylesheet" href="../CSS/maps-page.css">
+</head>
+
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo">Abdullah <span>Riaz</span></a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li>
+        <a href="projects.html" class="active">Projects ▾</a>
+        <div class="dropdown">
+          <a href="projects.html">All Projects</a>
+          <a href="app-development.html">Apps</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="story-map.html">Story Map</a>
+          <a href="maps.html" class="active">Maps</a>
+          <a href="talks.html">Talks</a>
+          <a href="publications.html">Publications</a>
+        </div>
+      </li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="app-development.html" class="sub">→ Apps</a>
+    <a href="dashboard.html" class="sub">→ Dashboard</a>
+    <a href="story-map.html" class="sub">→ Story Map</a>
+    <a href="maps.html" class="sub active">→ Maps</a>
+    <a href="talks.html" class="sub">→ Talks</a>
+    <a href="publications.html" class="sub">→ Publications</a>
+    <a href="cv.html">CV</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <main class="maps-page">
+    <header class="maps-intro">
+      <div class="section-label">Cartography / Web Mapping</div>
+      <h1 class="section-title">Interactive <em>Maps</em></h1>
+      <p class="section-sub">
+        Explore vector datasets, raster visualizations and interactive geospatial
+        work through a unified project explorer.
+      </p>
+    </header>
+
+    <section class="map-explorer" aria-label="Geospatial Project Explorer">
+      <aside class="project-sidebar">
+        <div class="sidebar-heading">
+          <div>
+            <span class="eyebrow">Project library</span>
+            <h2>Explore datasets</h2>
+          </div>
+          <span class="project-count" id="projectCount">0</span>
+        </div>
+
+        <label class="project-search" for="projectSearch">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input id="projectSearch" type="search" placeholder="Search projects..." autocomplete="off">
+          <kbd>/</kbd>
+        </label>
+
+        <div class="project-filters" role="group" aria-label="Filter projects by data type">
+          <button class="filter-button active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-button" type="button" data-filter="vector" aria-pressed="false">
+            <i class="fa-solid fa-draw-polygon"></i> Vector
+          </button>
+          <button class="filter-button" type="button" data-filter="raster" aria-pressed="false">
+            <i class="fa-solid fa-layer-group"></i> Raster
+          </button>
+        </div>
+
+        <div class="project-list" id="projectList" aria-live="polite"></div>
+      </aside>
+
+      <div class="map-stage">
+        <div id="portfolioMap" aria-label="Interactive project map"></div>
+
+        <div class="map-topbar">
+          <div class="map-state-pill">
+            <span class="status-dot"></span>
+            <span id="mapStateText">Ready to explore</span>
+          </div>
+
+          <button class="basemap-toggle" id="basemapToggle" type="button" aria-expanded="false">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Basemap</span>
+            <i class="fa-solid fa-chevron-down chevron"></i>
+          </button>
+        </div>
+
+        <div class="basemap-panel" id="basemapPanel" aria-label="Basemap options">
+          <div class="panel-title">Choose basemap</div>
+          <button class="basemap-option active" type="button" data-basemap="osm">
+            <span class="basemap-preview preview-osm"></span>
+            <span><strong>OpenStreetMap</strong><small>Clean street map</small></span>
+            <i class="fa-solid fa-check"></i>
+          </button>
+          <button class="basemap-option" type="button" data-basemap="satellite">
+            <span class="basemap-preview preview-satellite"></span>
+            <span><strong>Google Satellite</strong><small>Satellite imagery</small></span>
+            <i class="fa-solid fa-check"></i>
+          </button>
+          <button class="basemap-option" type="button" data-basemap="googleMaps">
+            <span class="basemap-preview preview-google"></span>
+            <span><strong>Google Maps</strong><small>Roads and places</small></span>
+            <i class="fa-solid fa-check"></i>
+          </button>
+          <button class="basemap-option" type="button" data-basemap="hybrid">
+            <span class="basemap-preview preview-hybrid"></span>
+            <span><strong>Google Hybrid</strong><small>Imagery with labels</small></span>
+            <i class="fa-solid fa-check"></i>
+          </button>
+        </div>
+
+        <!-- <div class="map-empty-card" id="mapEmptyCard">
+          <div class="empty-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <span class="eyebrow">Interactive portfolio</span>
+          <h3>Your projects will appear here</h3>
+          <p>Selecting a project will fly the map to its location and display only its related vector and raster layers.</p>
+          <div class="empty-features">
+            <span><i class="fa-solid fa-plane"></i> Fly to project</span>
+            <span><i class="fa-solid fa-eye"></i> Smart layers</span>
+            <span><i class="fa-solid fa-circle-info"></i> Feature details</span>
+          </div>
+        </div> -->
+
+        <div class="map-coordinate" id="mapCoordinate">31.5204° N&nbsp;&nbsp;74.3587° E</div>
+
+        <aside class="map-legend" id="mapLegend" aria-live="polite" hidden></aside>
+
+        <section class="attribute-panel" id="attributePanel" aria-label="Layer attribute table" hidden>
+          <header class="attribute-header">
+            <div>
+              <span class="eyebrow">Vector data</span>
+              <h3 id="attributeTitle">Attribute table</h3>
+            </div>
+            <div class="attribute-actions">
+              <span id="attributeCount"></span>
+              <button id="attributeClose" type="button" aria-label="Close attribute table"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+          </header>
+          <div class="attribute-scroll"><table id="attributeTable"></table></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://unpkg.com/georaster@1.6.0/dist/georaster.browser.bundle.min.js"></script>
+  <script src="https://unpkg.com/georaster-layer-for-leaflet@3.10.0/dist/georaster-layer-for-leaflet.min.js"></script>
+  <!-- Existing global portfolio JavaScript: do not replace it -->
+  <script src="../JS/script.js"></script>
+  <!-- Maps-page JavaScript only -->
+  <script src="../JS/maps-page.js"></script>
+</body>
+</html>
