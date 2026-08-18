@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<title>Story Map | Abdullah Riaz</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo">Abdullah <span>Riaz</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li>
+        <a href="projects.html" class="active">Projects ▾</a>
+        <div class="dropdown">
+          <a href="projects.html">All Projects</a>
+          <a href="app-development.html">Apps</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="story-map.html">Story Map</a>
+          <a href="maps.html">Maps</a>
+          <a href="talks.html">Talks</a>
+          <a href="publications.html">Publications</a>
+        </div>
+      </li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="app-development.html" class="sub">→ Apps</a>
+    <a href="dashboard.html" class="sub">→ Dashboard</a>
+    <a href="story-map.html" class="sub">→ Story Map</a>
+    <a href="maps.html" class="sub">→ Maps</a>
+    <a href="talks.html" class="sub">→ Talks</a>
+    <a href="publications.html" class="sub">→ Publications</a>
+    <a href="cv.html">CV</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <section class="active" id="projects">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Narrative GIS</div>
+        <h2 class="section-title">Story <em>Map</em></h2>
+        <p class="section-sub">Story map and spatial storytelling projects combining maps, analysis, and narrative communication.</p>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+
+        <a
+          class="project-card"
+          href="https://storymaps.arcgis.com/briefings/8a8baf9b00de4897a75c1dd7fd9e13da"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="project-card-thumb">
+            <img src="https://raw.githubusercontent.com/abdullah-gis/Abdullah_Riaz.github.io/main/images/norfolk-flood-risk-assessment.jpg" alt="Norfolk Flood Risk Assessment">
+          </div>
+
+          <div class="project-card-body">
+            <div class="project-card-type">
+              ArcGIS StoryMaps / Flood Risk
+            </div>
+
+            <div class="project-card-title">
+              Norfolk Flood Risk Assessment
+            </div>
+
+            <p class="project-card-desc">
+              An interactive ArcGIS StoryMaps briefing focused on flood-risk
+              assessment in Norfolk, presenting geographic information, maps,
+              affected locations, and flood-related insights through a structured
+              visual narrative.
+            </p>
+          </div>
+
+          <div class="project-card-footer">
+            <span class="project-link-arrow">
+              View Story Map →
+            </span>
+          </div>
+        </a>
+
+      </div>
+
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
